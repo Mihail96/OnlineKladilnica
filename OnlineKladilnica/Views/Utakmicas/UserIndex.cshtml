@@ -1,0 +1,49 @@
+﻿@model IEnumerable<OnlineKladilnica.Models.Utakmica>
+
+@{
+    ViewBag.Title = "Билтен";
+}
+
+    <h2>Билтен</h2>
+<h4>Следени наторевари се:</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            Учесници
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImeUtakmica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vreme)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CoefA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CoefB)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ATim.Ime) - @Html.DisplayFor(modelItem => item.BTim.Ime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImeUtakmica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vreme)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoefA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoefB)
+        </td>
+    </tr>
+}
+
+</table>

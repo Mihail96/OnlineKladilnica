@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Online Kladilnica", "AdminIndex", "Utakmicas", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("Online Kladilnica", "UserIndex", "Utakmicas", new { area = "" }, new { @class = "navbar-brand" })
+                }
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Утакмици", "AdminIndex", "Utakmicas")</li>
+                        <li>@Html.ActionLink("Тимови", "AdminIndex", "Tims")</li>
+                        <li>@Html.ActionLink("Тикети", "AdminIndex", "Tickets")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Билтен", "UserIndex", "Utakmicas")</li>
+                        <li>@Html.ActionLink("Тикети", "UserIndex", "Tickets")</li>
+                        <li>@Html.ActionLink("Облози", "UserIndex", "TiketUtakmicas")</li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

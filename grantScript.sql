@@ -1,12 +1,12 @@
-IF NOT EXISTS (SELECT name FROM sys.server_principals WHERE name = 'IIS APPPOOL\OnlineKladilnicaAppPool')
+IF NOT EXISTS (SELECT name FROM sys.server_principals WHERE name = 'IIS APPOOL\OnlineKladilnicaAppPool')
 BEGIN
-    CREATE LOGIN [IIS APPPOOL\OnlineKladilnicaAppPool] 
+    CREATE LOGIN [IIS APPOOL\OnlineKladilnicaAppPool] 
       FROM WINDOWS WITH DEFAULT_DATABASE=[master], 
       DEFAULT_LANGUAGE=[us_english]
 END
 GO
 CREATE USER OnlineKladilnicaUser 
-  FOR LOGIN [IIS APPPOOL\OnlineKladilnicaAppPool]
+  FOR LOGIN [IIS APPOOL\OnlineKladilnicaAppPool]
 GO
 EXEC sp_addrolemember 'db_owner', 'OnlineKladilnicaUser'
 GO
